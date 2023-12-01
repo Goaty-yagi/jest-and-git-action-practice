@@ -9,6 +9,8 @@ jobs:
         node: [18.x, 16.x]
 
     steps:
+      - name: Show ubuntu details
+          run: lsb_release -a
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:

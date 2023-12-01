@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Show ubuntu details
-          run: lsb_release -a
+        run: lsb_release -a
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:

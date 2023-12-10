@@ -1,21 +1,17 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import Button from "@/components/Button";
-
-const inter = Inter({ subsets: ["latin"] });
-
-function evnet() {
-  console.log("clicked");
-}
+import { useState } from "react";
 
 export default function Home() {
-  const test = "Hello TEST";
+
+  const [value, setValue] = useState('');
+  const test = "Hello Jest";
+  const onChange = (event:any) => {
+    setValue(event.target.value);
+  };
   return (
     <>
-      <Button text={"BUTTON"} event={evnet} />
-      {test}
+      <input type="text" value={value} onChange={onChange} placeholder={"Type something..."} />
+      <div data-testid="test-val">{value}</div>
+      <div data-testid="my-element">{test}</div>
     </>
   );
 }

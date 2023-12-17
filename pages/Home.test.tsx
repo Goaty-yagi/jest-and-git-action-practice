@@ -11,32 +11,13 @@ import Home from "@/pages";
 // ex) the element is in the document
 
 it("should have Hello Jest text", () => {
-  const { debug } = render(<Home />); // ARRANGE
-  // youcan do "render(<Home />)";
+  render(<Home />); // ARRANGE
 
-  // debug is to display the rendered jsx.
-  debug();
-  
-  // **ACTION example**
-
-  // Using getByText
-  const element1 = screen.getByText("Hello");
-  // If 'Hello' text is not found, it throws an error
-
-  // Using queryByText
-  const element2 = screen.queryByText("Hello");
-  // If 'Hello' text is not found, element will be null
-
-  const myElem = screen.getByText("Hello Jest");
-
-  //**ASSERT**/
+  const myElem = screen.getByText("Hello Jest"); // ACTION
   // test text 'Hello TEST' in the screen
-  expect(myElem).toBeInTheDocument();
-
-  // test testId exist
-  const testId = screen.getByTestId("my-element"); // ACTION
-  expect(testId).toBeInTheDocument(); // ASSERT
+  expect(myElem).toBeInTheDocument(); // ASSERT
 });
+
 // test or it
 test("should trigger onChange event", async () => {
   render(<Home />);

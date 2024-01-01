@@ -1,7 +1,5 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { fireEvent } from "@testing-library/react";
-import { act } from "@testing-library/react";
 import Home from "@/pages";
 
 // This test file is to test Home component
@@ -28,7 +26,9 @@ import Home from "@/pages";
 test("should trigger onChange event", async () => {
   render(<Home />);
 
-  const input = screen.getByPlaceholderText("Type something...") as HTMLInputElement;
+  const input = screen.getByPlaceholderText(
+    "Type something..."
+  ) as HTMLInputElement;
 
   const inputText = "Hello";
 
@@ -45,10 +45,10 @@ test("should trigger onChange event", async () => {
 test("Test onSubmit", async () => {
   render(<Home />);
 
-  const input = screen.getByPlaceholderText('Type something...');
+  const input = screen.getByPlaceholderText("Type something...");
 
-   // Get submit button element from text
-  const submitButton = screen.getByText('Submit')
+  // Get submit button element from text
+  const submitButton = screen.getByText("Submit");
 
   // Test the button is disabled before user input is typed.
   expect(submitButton).toBeDisabled();
@@ -74,15 +74,15 @@ test("Test onSubmit", async () => {
   // Once the button is clicked, it should be disabled
   expect(submitButton).toBeDisabled();
 
-  return new Promise<void>((resolve) => { //New!
-    setTimeout(() => {
-      resolve();
-    }, 3000); // Simulate the setTimeout duration (3 seconds)
-  }).then(() => {
-    // Assert that the button is no longer disabled after 3 seconds
-    expect(input.getAttribute("value")).toBe("");
-    console.log("value:",input.getAttribute("value") )
+  await act(async () => {
+    await new Promise<void>((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 3000);
+    });
   });
+  expect(input.getAttribute("value")).toBe("");
+  console.log("value:", input.getAttribute("value"));
 });
 
 //** BLOG0 TEST END **//

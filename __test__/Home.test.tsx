@@ -1,5 +1,6 @@
 import { render, screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+
 import Home from "@/pages";
 
 // This test file is to test Home component
@@ -27,8 +28,7 @@ test("should trigger onChange event", async () => {
   render(<Home />);
 
   const input = screen.getByPlaceholderText(
-    "Type something..."
-  ) as HTMLInputElement;
+    "Type something...")
 
   const inputText = "Hello";
 
@@ -75,10 +75,9 @@ test("Test onSubmit", async () => {
   expect(submitButton).toBeDisabled();
 
   await act(async () => {
-    await new Promise<void>((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, 3000);
+    await new Promise((resolve) => {
+      setTimeout(
+        resolve, 3000);
     });
   });
   expect(input.getAttribute("value")).toBe("");
